@@ -5,27 +5,27 @@ import { Notification } from './notification.model';
 export class NotificationService {
   private notifications: Notification[] = [];
 
-  getCurrentLecturer() {
+  getCurrentSpeaker() {
     return this.notifications.filter(
-      (notification) => notification.isCurrentLecturer,
+      (notification) => notification.isCurrentSpeaker,
     );
   }
 
-  addLecturer(name: string, isCurrentLecturer: boolean, date: string) {
-    const lecturerId = Math.random().toString();
-    const newLecturer = new Notification(
-      lecturerId,
-      name,
-      isCurrentLecturer,
+  addSpeaker(speakerName: string, isCurrentSpeaker: boolean, date: string) {
+    const speakerId = Math.random().toString();
+    const newSpeaker = new Notification(
+      speakerId,
+      speakerName,
+      isCurrentSpeaker,
       date,
     );
-    this.notifications.push(newLecturer);
-    return lecturerId;
+    this.notifications.push(newSpeaker);
+    return speakerId;
   }
 
-  updateLecturer(lecturerId: string, isCurrentLecturer: boolean) {
+  updateSpeaker(speakerId: string, isCurrentSpeaker: boolean) {
     const updatedProduct = this.notifications
-      .filter((notification) => notification.id === lecturerId)
-      .map((notif) => (notif.isCurrentLecturer = true));
+      .filter((notification) => notification.id === speakerId)
+      .map((notif) => (notif.isCurrentSpeaker = isCurrentSpeaker));
   }
 }

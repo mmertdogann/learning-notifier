@@ -6,28 +6,28 @@ export class NotificationController {
   constructor(private readonly notificationService: NotificationService) {}
 
   @Get()
-  getCurrentLecturer() {
-    return this.notificationService.getCurrentLecturer();
+  getCurrentSpeaker() {
+    return this.notificationService.getCurrentSpeaker();
   }
 
   @Post()
-  addLecturer(
-    @Body('name') lecturerName: string,
-    @Body('isCurrentLecturer') isCurrentLecturer: boolean,
+  addSpeaker(
+    @Body('name') speakerName: string,
+    @Body('isCurrentSpeaker') isCurrentSpeaker: boolean,
     @Body('date') date: string,
   ) {
-    return this.notificationService.addLecturer(
-      lecturerName,
-      isCurrentLecturer,
+    return this.notificationService.addSpeaker(
+      speakerName,
+      isCurrentSpeaker,
       date,
     );
   }
 
   @Patch(':id')
-  updateLecturer(
-    @Param('id') lecturerId: string,
-    @Body('isCurrentLecturer') isCurrentLecturer: boolean,
+  updateSpeaker(
+    @Param('id') speakerId: string,
+    @Body('isCurrentSpeaker') isCurrentSpeaker: boolean,
   ) {
-    this.notificationService.updateLecturer(lecturerId, isCurrentLecturer);
+    this.notificationService.updateSpeaker(speakerId, isCurrentSpeaker);
   }
 }
