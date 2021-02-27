@@ -5,13 +5,21 @@ import { Notification } from './notification.model';
 export class NotificationService {
   private notifications: Notification[] = [];
 
-  getCurrentSpeaker() {
+  getCurrentSpeaker = () => {
     return this.notifications.filter(
       (notification) => notification.isCurrentSpeaker,
     );
-  }
+  };
 
-  addSpeaker(speakerName: string, isCurrentSpeaker: boolean, date: string) {
+  getSpeakers = () => {
+    return this.notifications.map((notification) => notification.speaker);
+  };
+
+  addSpeaker = (
+    speakerName: string,
+    isCurrentSpeaker: boolean,
+    date: string,
+  ) => {
     const speakerId = Math.random().toString();
     const newSpeaker = new Notification(
       speakerId,
@@ -21,11 +29,17 @@ export class NotificationService {
     );
     this.notifications.push(newSpeaker);
     return speakerId;
-  }
+  };
 
-  updateSpeaker(speakerId: string, isCurrentSpeaker: boolean) {
+  updateSpeaker = (speakerId: string) => {
+    this.notifications
+      .filter((notification) => notification.isCurrentSpeaker)
+      .map((notif) => (notif.isCurrentSpeaker = false));
+
     const updatedProduct = this.notifications
       .filter((notification) => notification.id === speakerId)
-      .map((notif) => (notif.isCurrentSpeaker = isCurrentSpeaker));
-  }
+      .map((notif) => (notif.isCurrentSpeaker = true));
+
+    return updatedProduct;
+  };
 }

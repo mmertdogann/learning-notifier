@@ -10,6 +10,11 @@ export class NotificationController {
     return this.notificationService.getCurrentSpeaker();
   }
 
+  @Get('/speakers')
+  getSpeakers() {
+    return this.notificationService.getSpeakers();
+  }
+
   @Post()
   addSpeaker(
     @Body('name') speakerName: string,
@@ -24,10 +29,7 @@ export class NotificationController {
   }
 
   @Patch(':id')
-  updateSpeaker(
-    @Param('id') speakerId: string,
-    @Body('isCurrentSpeaker') isCurrentSpeaker: boolean,
-  ) {
-    this.notificationService.updateSpeaker(speakerId, isCurrentSpeaker);
+  updateSpeaker(@Param('id') speakerId: string) {
+    this.notificationService.updateSpeaker(speakerId);
   }
 }
