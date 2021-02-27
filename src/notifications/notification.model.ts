@@ -9,6 +9,6 @@ export class Notification {
     public id: string,
     public speaker: string,
     public isCurrentSpeaker: boolean,
-    public date: string, //TODO Data type date olacak
+    public date: string, //TODO data type date olmalı
   ) {}
 }
